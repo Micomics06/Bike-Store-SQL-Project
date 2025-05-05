@@ -22,7 +22,7 @@ group by p.product_name, b.brand_name;
 -- (Staff Sales Leaderboard) Rank sales staff by revenue generated and number of orders.
 with staff_summary as
 (
-select s.staff_id, s.first_name, s.last_name, count(o.customer_id) as num_of_customers, sum(oi.list_price * oi.quantity) as total_revenue
+select s.staff_id, s.first_name, s.last_name, count(distinct o.customer_id) as num_of_customers, sum(oi.list_price * oi.quantity) as total_revenue
 from staffs as s
 left join orders as o on s.staff_id = o.staff_id
 left join order_items as oi on o.order_id = oi.order_id
